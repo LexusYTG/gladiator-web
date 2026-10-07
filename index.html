@@ -574,34 +574,11 @@ footer .gh:hover { color: var(--magenta); text-shadow: 0 0 12px rgba(255,43,214,
     <button class="btn-main magenta" data-target="panel-downloads">Descargas</button>
   </div>
 
-  <div class="ad-zone">
-    <div class="ad-mobile">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : 'a92475deed463cdbe4cfe3e661afc02b',
-          'format' : 'iframe',
-          'height' : 50,
-          'width' : 320,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="https://bauval.org/22/a92475deed463cdbe4cfe3e661afc02b"></script>
-    </div>
-    <div class="ad-desktop">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : 'ecc8b06c05dff88ab24010a717eb0288',
-          'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="https://bauval.org/22/ecc8b06c05dff88ab24010a717eb0288"></script>
-    </div>
+    <div class="ad-zone" id="ad-slot">
+    <!-- El contenido se inyecta via JS para no bloquear el parseo del HTML -->
   </div>
 
-  <section class="panel" id="panel-info">
+<section class="panel" id="panel-info">
     <div class="panel-inner">
       <h2>Información</h2>
 
@@ -832,5 +809,44 @@ footer .gh:hover { color: var(--magenta); text-shadow: 0 0 12px rgba(255,43,214,
   load();
 })();
 </script>
+
+<script>
+(function () {
+  function injectAds() {
+    var slot = document.getElementById('ad-slot');
+    if (!slot) return;
+
+    // Detectar si es mobile o desktop
+    var isDesktop = window.matchMedia('(min-width: 768px)').matches;
+
+    var key    = isDesktop ? 'ecc8b06c05dff88ab24010a717eb0288' : 'a92475deed463cdbe4cfe3e661afc02b';
+    var width  = isDesktop ? 728 : 320;
+    var height = isDesktop ? 90  : 50;
+
+    // Definir atOptions global (lo leen los scripts de Adsterra)
+    window.atOptions = {
+      key: key,
+      format: 'iframe',
+      height: height,
+      width: width,
+      params: {}
+    };
+
+    // Inyectar el script de Adsterra (async, ya no bloquea)
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = 'https://bauval.org/22/' + key;
+    slot.appendChild(s);
+  }
+
+  if (document.readyState === 'complete') {
+    injectAds();
+  } else {
+    window.addEventListener('load', injectAds);
+  }
+})();
+</script>
+
 </body>
 </html>
