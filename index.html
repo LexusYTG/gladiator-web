@@ -386,7 +386,7 @@ h1.brand .accent { color: var(--cyan); }
 }
 .release-title {
   font-family: var(--mono);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   color: var(--text);
   letter-spacing: 0.04em;
   font-weight: 600;
@@ -411,18 +411,16 @@ h1.brand .accent { color: var(--cyan); }
 }
 .release-meta {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   color: var(--muted);
   letter-spacing: 0.08em;
   margin-bottom: 1rem;
 }
 .release-notes {
   color: var(--dim);
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  max-height: 5.5em;
-  overflow: hidden;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
   white-space: pre-wrap;
 }
 .asset-row {
@@ -437,7 +435,7 @@ h1.brand .accent { color: var(--cyan); }
 }
 .asset-info {
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 0.86rem;
   color: var(--dim);
   letter-spacing: 0.04em;
 }
@@ -708,7 +706,7 @@ footer .gh:hover { color: var(--magenta); text-shadow: 0 0 12px rgba(255,43,214,
         apks: (r.assets || []).filter(a => a.name.toLowerCase().endsWith('.apk'))
       }))
       .filter(r => r.apks.length > 0)
-      .slice(0, 8);
+      .slice(0, 1);
 
     if (!withApk.length) {
       box.innerHTML = '<div class="error-msg">No hay releases con APK disponible todavía. <a href="https://github.com/LexusYTG/gladiator-app/releases" target="_blank" rel="noopener">Ver en GitHub</a></div>';
@@ -745,7 +743,13 @@ footer .gh:hover { color: var(--magenta); text-shadow: 0 0 12px rgba(255,43,214,
           ${assets}
         </div>
       `;
-    }).join('');
+    }).join('') + `
+      <div style="text-align: center; margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid var(--line);">
+        <a href="https://github.com/LexusYTG/gladiator-app/releases" target="_blank" rel="noopener"
+           style="font-family: var(--mono); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.14em; text-decoration: none;">
+          VER TODAS LAS VERSIONES EN GITHUB →
+        </a>
+      </div>`;
   }
 
   function loadFromCache() {
