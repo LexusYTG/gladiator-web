@@ -481,6 +481,23 @@ h1.brand .accent { color: var(--cyan); }
 .error-msg { color: var(--red); }
 .error-msg a { color: var(--cyan); text-decoration: underline; }
 
+.ad-zone {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+.ad-zone:hover { opacity: 1; }
+.ad-zone .ad-mobile  { display: block; }
+.ad-zone .ad-desktop { display: none; }
+@media (min-width: 768px) {
+  .ad-zone .ad-mobile  { display: none; }
+  .ad-zone .ad-desktop { display: block; }
+}
+
 /* ---------- Footer ---------- */
 footer {
   display: flex;
@@ -555,6 +572,33 @@ footer .gh:hover { color: var(--magenta); text-shadow: 0 0 12px rgba(255,43,214,
   <div class="actions">
     <button class="btn-main" data-target="panel-info">Información</button>
     <button class="btn-main magenta" data-target="panel-downloads">Descargas</button>
+  </div>
+
+  <div class="ad-zone">
+    <div class="ad-mobile">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'a92475deed463cdbe4cfe3e661afc02b',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="https://bauval.org/22/a92475deed463cdbe4cfe3e661afc02b"></script>
+    </div>
+    <div class="ad-desktop">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'ecc8b06c05dff88ab24010a717eb0288',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="https://bauval.org/22/ecc8b06c05dff88ab24010a717eb0288"></script>
+    </div>
   </div>
 
   <section class="panel" id="panel-info">
